@@ -5,7 +5,7 @@
 echo "Creating a deploy user, and user group..."
 
 /bin/grep -i "^deployers" /etc/group
-if [ $? -eq 0]; then
+if [ $? -eq 0 ]; then
   echo "Group deployers already exists"
 else
   echo "Creating group deployers"
