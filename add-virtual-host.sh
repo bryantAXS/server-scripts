@@ -9,17 +9,17 @@ echo ""
 ### Check to see if $domain exists
 
 if [[ ! -e /etc/apache2/sites-available/${domain} ]]; then
-        echo "${domain} will be created"
-        echo "Are you sure you want to do this?"
-        read q
-        if [[ "${q}" == "yes" ]] || [[ "${q}" == "y" ]]; then
+  echo "${domain} will be created"
+  echo "Are you sure you want to do this?"
+  read q
+  if [[ "${q}" == "yes" ]] || [[ "${q}" == "y" ]]; then
 
-                if [[ ! -e /var/www/${domain} ]]; then
-                        mkdir /var/www/${domain}
-                        mkdir /var/www/${domain}/current
-                fi
+    if [[ ! -e /var/www/${domain} ]]; then
+      mkdir /var/www/${domain}
+      mkdir /var/www/${domain}/current
+    fi
 
-                echo "
+    echo "
 ### ${domain}
 
 <VirtualHost *:80>
@@ -37,14 +37,17 @@ if [[ ! -e /etc/apache2/sites-available/${domain} ]]; then
   CustomLog /var/log/apache2/access.log combined
 </VirtualHost>" >> /etc/apache2/sites-available/${domain}
 
-                echo "Enabling Sites"
-                a2ensite ${domain}
-                echo "Restart Apache?"
-                read q
-                if [[ "${q}" == "yes" ]] || [[ "${q}" == "y" ]]; then
-                        /etc/init.d/apache2 reload
-                fi
-        fi
+    echo "Enabling Sites"
+    a2ensite ${domain}
+    echo "Restart Apache?"
+    read q
+
+    if [[ "${q}" == "yes" ]] || [[ "${q}" == "y" ]]; then
+      /etc/init.d/apache2 reload
+    fi
+
+  fi
+
 else
-        echo "${domain} already exists"
+  echo "${domain} already exists"
 fi

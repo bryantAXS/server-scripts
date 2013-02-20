@@ -15,6 +15,7 @@ fi
 /bin/grep -i "^deploy" /etc/passwd
 if [ $? -eq 0 ]; then
   usermod -a -G deployers deploy
+  echo "User deploy already exists"
 else
   useradd -m deploy
   echo "Password for deploy user?"
