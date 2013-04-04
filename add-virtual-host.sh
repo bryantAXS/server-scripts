@@ -48,7 +48,7 @@ if [[ ! -e /etc/apache2/sites-available/${domain} ]]; then
 
     bash create-deploy-user.sh
     chown -R www-data:deployers /var/www/${domain}
-    chmod -R 0766 /var/www/${domain}
+    chmod -R 0771 /var/www/${domain}
 
   fi
 
